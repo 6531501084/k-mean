@@ -18,13 +18,15 @@ with open ('kmeans_model.pkl','rb')as f:
     X, _ = make_blobs(n_samples=300, centers=loaded_model.n_clusters, cluster_std=0.60, random_state=0)
     #predict
     y_kmeans = loaded_model.predict(X)
-    #PLOTTING
-    fig,ax =plt.subplots()
-    scatter=ax.scatter(X[:, 0], X[:, 1], c=y_kmeans, cmap='viridis')
-ax.scatter(loaded_model.cluster_centers_[:, 0], loaded_model.cluster_centers_[:, 1], s=300, c='red')
-ax.set_title('k-Means Clustering')
-ax.legend()
-st.pyplot(fig)
+    
+   # Plotting
+plt.figure(figsize=(8, 6))
+plt.scatter(X[:, 0], X[:, 1], c=y_kmeans, cmap='viridis')
+plt.scatter(loaded_model.cluster_centers_[:, 0], loaded_model.cluster_centers_[:, 1], s=300, c='red')
+plt.title('k-Means Clustering')
+
+# Show the plot in Streamlit
+st.pyplot(plt)
 
 
     
